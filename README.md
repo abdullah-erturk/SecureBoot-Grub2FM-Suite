@@ -1,9 +1,10 @@
 # SecureBoot-Grub2FM-Suite
 
-![Önizleme.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG7UXWMXRQG3Q3SNQHK6Z6KS6)
 
 	Türkçe Açıklama - DİKKAT:
-	
+
+![Önizleme.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG34CWZPIAWBZONKTPK6Z6J4O)
+
 Grub2FM Suite yöntemine ait script dosyası Windows 7/8/8.1'deki disk bölümlendirme kısıtlamalarından dolayı sadece Windows 10'da çalışmaktadır
 
 Bu script ile Grub2 Dosya Yöneticisini kurmak istediğiniz USB HDD ve flash diskinizin tamamı 
@@ -34,6 +35,8 @@ Grub2FM Suite Tanıtım videosu by crasadure from TNCTR.com
 https://www.youtube.com/watch?v=eriQCbeE9k4
 
 	English Instruction - ATTENTION:
+	
+![Preview.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/Preview.png?token=ANCTFG7PTTK74GZXCBOARQK6Z6KWK)
 	
 Grub2FM Suite script only run on Windows 10 due to disk partitioning restrictions in Windows 7/8 / 8.1
 
