@@ -19,11 +19,11 @@ Script aynı zamanda vhd ve vhdx sanal disklerine de kurulum yapabilmektedir. Ay
 Release Grub2FM dosyalarını Github sitesinden indirir. Sonrasında da USB diskinizin tamamına veya br rbölümüne kurulum yapabilirsiniz.
 
 ÖZELLİKLERİ:
-	Güvenli Önyüklemeyi (Securebootu) destekler.
-	Grub2FM tarafından desteklenen tüm dilleri destekler.
-	Diskin tamamına veya bir bölümüne kurulumunu destekler.
-	Efi x86 ve Efi x64'ü destekler.
-	Türkçe ve İngilizce kurulum arayüzü dil seçenekleri mevcuttur.
+- Güvenli Önyüklemeyi (Securebootu) destekler.
+- Grub2FM tarafından desteklenen tüm dilleri destekler.
+- Diskin tamamına veya bir bölümüne kurulumunu destekler.
+- Efi x86 ve Efi x64'ü destekler.
+- Türkçe ve İngilizce kurulum arayüzü dil seçenekleri mevcuttur.
 
 Grub2 Dosya Yöneticisi kurulan USB disk, hem MBR hem de UEFI modunda çalışmaktadır. UEFI modunda güvenli önyükleme açık iken de 
 çalışır ancak öncelikle SecureBoot.cer dosyasını BIOS'a tanıtmalısınız.
@@ -52,11 +52,11 @@ Release Grub2FM files in the language of your choice from the Github site. You c
 n all or part of your USB disk.
 
 FEATURES:
-    Supports Secure Boot (Secureboot).
-    It supports all languages ​​supported by Grub2FM.
-    It supports the installation of the whole or part of the disk.
-	It supports MBR, Efi x86 and Efi x64.
-    Turkish and English installation interface language options are available.
+- Supports Secure Boot (Secureboot).
+- It supports all languages ​​supported by Grub2FM.
+- It supports the installation of the whole or part of the disk.
+- It supports MBR, Efi x86 and Efi x64.
+- Turkish and English installation interface language options are available.
 
 Grub2 File Manager installed USB disk works in both MBR and UEFI mode. Grub2FM efi files also work with UEFI mode secure boot, 
 but you must first introduce the SecureBoot.cer file to BIOS
