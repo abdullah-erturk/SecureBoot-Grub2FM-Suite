@@ -39,7 +39,7 @@ Grub2 Dosya Yöneticisi kurulan USB disk, hem MBR hem de UEFI modunda çalışma
 SecureBoot.cer dosyasının BIOS'a tanıtılması işleminden sonra artık o makinada tekrardan bu işlemi yapmanıza 
 gerek yoktur, Grub2FM direkt olarak secureboot açık iken önyüklenecektir.
 
-Grub2FM Suite Tanıtım videosu crasadure@TNCTR.com
+Grub2FM Suite Tanıtım videosu crasadure TNCTR.com
 https://www.youtube.com/watch?v=eriQCbeE9k4
 
 	English Instruction
