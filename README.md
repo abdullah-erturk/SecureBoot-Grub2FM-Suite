@@ -3,7 +3,7 @@
 
 	Türkçe Açıklama
 
-![Preview.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG56KLC6UOG6BBLHZGC6Z6K4O)
+![](https://resimag.com/p1/8a1fea2963c.png)
 
 	DİKKAT:
 
@@ -38,7 +38,7 @@ https://www.youtube.com/watch?v=eriQCbeE9k4
 
 	English Instruction
 	
-![Preview.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/Preview.png?token=ANCTFG7PTTK74GZXCBOARQK6Z6KWK)
+![](https://www.resimag.com/p1/062be9c2891.png)
 	
 	ATTENTION:
 
