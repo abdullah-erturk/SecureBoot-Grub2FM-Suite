@@ -6,8 +6,6 @@ credit: a1ive
 
 Grub2 File Manager Github: https://github.com/a1ive/grub2-filemanager
 
-1. Türkçe Açıklama
-2. English Instruction
 
 	1- Türkçe Açıklama
 
