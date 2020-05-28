@@ -33,7 +33,7 @@ https://www.youtube.com/watch?v=eriQCbeE9k4
 
 	English Instruction - ATTENTION:
 	
-The script file of Grub2FM Suite method only works on Windows 10 due to disk partitioning restrictions in Windows 7/8 / 8.1.
+Grub2FM Suite script only run on Windows 10 due to disk partitioning restrictions in Windows 7/8 / 8.1
 
 With this script, the entire USB HDD and flash disk you want to install Grub2 File Manager will be completely formatted.
 Take precaution for data loss.
