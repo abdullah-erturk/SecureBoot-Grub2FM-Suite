@@ -9,7 +9,7 @@ Grub2 File Manager Github: https://github.com/a1ive/grub2-filemanager
 
 	Türkçe Açıklama
 
-![](https://www.resimag.com/p1/6e96dd60658.png)
+![](https://www.resimag.com/p1/8a1fea2963c.png)
 
 	DİKKAT:
 
@@ -44,7 +44,7 @@ https://www.youtube.com/watch?v=eriQCbeE9k4
 
 	English Instruction
 	
-![](https://www.resimag.com/p1/062be9c2891.png)
+![](https://www.resimag.com/p1/6e96dd60658.png)
 	
 	ATTENTION:
 
