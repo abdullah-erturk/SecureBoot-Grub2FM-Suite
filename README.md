@@ -25,10 +25,8 @@ Grub2 Dosya Yöneticisi kurulan USB disk, hem MBR hem de UEFI modunda çalışma
 SecureBoot.cer dosyasının BIOS'a tanıtılması işleminden sonra artık o makinada tekrardan bu işlemi yapmanıza 
 gerek yoktur, Grub2FM direkt olarak secureboot açık iken önyüklenecektir.
 
-SecureBoot işleminin nasıl yapılacağına dair kısa bir anlatım gif resmi:
-https://resimag.com/p1/3be075fc7cc.gif
-
-
+Grub2FM Suite Tanıtım videosu by crasadure from TNCTR.com
+https://www.youtube.com/watch?v=eriQCbeE9k4
 
 	English Instruction - ATTENTION:
 The script file of the Grub2FM Suite method works only on Windows 10.
@@ -54,7 +52,7 @@ FEATURES:
 Grub2 File Manager installed USB disk works in both MBR and UEFI mode. Grub2FM efi files also work with UEFI mode secure boot, 
 but you must first introduce the SecureBoot.cer file to BIOS
 
-Grub2FM Suite Trailer (Turkish Language :) ) by crasadure from TNCTR.com
+Grub2FM Suite Trailer (Turkish Language) by crasadure from TNCTR.com
 https://www.youtube.com/watch?v=eriQCbeE9k4
 
 mephistooo2 | TNCTR.com
