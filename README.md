@@ -1,5 +1,7 @@
 # SecureBoot-Grub2FM-Suite
 
+https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG34CWZPIAWBZONKTPK6Z6J4O
+
 	Türkçe Açıklama - DİKKAT:
 	
 Grub2FM Suite yöntemine ait script dosyası Windows 7/8/8.1'deki disk bölümlendirme kısıtlamalarından dolayı sadece Windows 10'da çalışmaktadır
