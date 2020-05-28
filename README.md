@@ -63,7 +63,7 @@ n all or part of your USB disk.
 
 FEATURES:
 - Supports Secure Boot (Secureboot).
-- It supports all languages ​​supported by Grub2FM.
+- It supports all languages ​​supported by ![Grub2FM]https://github.com/a1ive/grub2-filemanager
 - It supports the installation of the whole or part of the disk.
 - It supports MBR, EFI x86 and EFI x64.
 - Turkish and English installation interface language options are available.
