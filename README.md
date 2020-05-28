@@ -1,9 +1,11 @@
 # SecureBoot-Grub2FM-Suite
 
 
-	Türkçe Açıklama - DİKKAT:
+	Türkçe Açıklama
 
 ![Preview.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG56KLC6UOG6BBLHZGC6Z6K4O)
+
+	DİKKAT:
 
 Grub2FM Suite yöntemine ait script dosyası Windows 7/8/8.1'deki disk bölümlendirme kısıtlamalarından dolayı sadece Windows 10'da çalışmaktadır
 
@@ -34,10 +36,12 @@ gerek yoktur, Grub2FM direkt olarak secureboot açık iken önyüklenecektir.
 Grub2FM Suite Tanıtım videosu by crasadure from TNCTR.com
 https://www.youtube.com/watch?v=eriQCbeE9k4
 
-	English Instruction - ATTENTION:
+	English Instruction
 	
 ![Preview.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/Preview.png?token=ANCTFG7PTTK74GZXCBOARQK6Z6KWK)
 	
+	ATTENTION:
+
 Grub2FM Suite script only run on Windows 10 due to disk partitioning restrictions in Windows 7/8 / 8.1
 
 With this script, the entire USB HDD and flash disk you want to install Grub2 File Manager will be completely formatted.
