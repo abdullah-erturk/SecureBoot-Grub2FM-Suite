@@ -6,8 +6,10 @@ credit: a1ive
 
 Grub2 File Manager Github: https://github.com/a1ive/grub2-filemanager
 
+1. Türkçe Açıklama
+2. English Instruction
 
-	Türkçe Açıklama
+	1. Türkçe Açıklama
 
 ![](https://www.resimag.com/p1/8a1fea2963c.png)
 
@@ -42,7 +44,7 @@ gerek yoktur, Grub2FM direkt olarak secureboot açık iken önyüklenecektir.
 Grub2FM Suite Tanıtım videosu crasadure TNCTR.com
 https://www.youtube.com/watch?v=eriQCbeE9k4
 
-	English Instruction
+	2. English Instruction
 	
 ![](https://www.resimag.com/p1/6e96dd60658.png)
 	
