@@ -2,7 +2,7 @@
 
 	Türkçe Açıklama - DİKKAT:
 	
-Grub2FM Suite yöntemine ait script dosyası sadece Windows 10'da çalışmaktadır
+Grub2FM Suite yöntemine ait script dosyası Windows 7/8/8.1'deki disk bölümlendirme kısıtlamalarından dolayı sadece Windows 10'da çalışmaktadır
 
 Bu script ile Grub2 Dosya Yöneticisini kurmak istediğiniz USB HDD ve flash diskinizin tamamı 
 yada seçtiğiniz bölümü komple biçimlendirilecektir. 
@@ -32,7 +32,8 @@ Grub2FM Suite Tanıtım videosu by crasadure from TNCTR.com
 https://www.youtube.com/watch?v=eriQCbeE9k4
 
 	English Instruction - ATTENTION:
-The script file of the Grub2FM Suite method works only on Windows 10.
+	
+The script file of Grub2FM Suite method only works on Windows 10 due to disk partitioning restrictions in Windows 7/8 / 8.1.
 
 With this script, the entire USB HDD and flash disk you want to install Grub2 File Manager will be completely formatted.
 Take precaution for data loss.
