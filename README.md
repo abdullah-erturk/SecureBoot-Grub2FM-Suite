@@ -1,5 +1,4 @@
 # GRUB2 FILE MANAGER SETUP & DOWNLOAD SUITE
-mephistooo2 | TNCTR.com
 
 https://www.tnctr.com/topic/662953-grub2-dosya-yöneticisi-grub2-file-managerg2fm/#comments
 
