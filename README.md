@@ -1,6 +1,9 @@
 # SecureBoot-Grub2FM-Suite
 
 	Türkçe Açıklama - DİKKAT:
+	
+Grub2FM Suite yöntemine ait script dosyası sadece Windows 10'da çalışmaktadır
+
 Bu script ile Grub2 Dosya Yöneticisini kurmak istediğiniz USB HDD ve flash diskinizin tamamı 
 yada seçtiğiniz bölümü komple biçimlendirilecektir. 
 Veri kaybı için önleminizi alın.
