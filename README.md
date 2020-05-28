@@ -1,6 +1,6 @@
 # SecureBoot-Grub2FM-Suite
 
-![Önizleme.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG34CWZPIAWBZONKTPK6Z6J4O)
+![Önizleme.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG7UXWMXRQG3Q3SNQHK6Z6KS6)
 
 	Türkçe Açıklama - DİKKAT:
 	
