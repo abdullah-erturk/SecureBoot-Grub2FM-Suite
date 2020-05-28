@@ -1,5 +1,11 @@
 # SecureBoot-Grub2FM-Suite
 
+# GRUB2 FILE MANAGER SETUP & DOWNLOAD SUITE
+# Copyright (C) 2020  mephistooo2 | TNCTR.com
+# https://www.tnctr.com/topic/662953-grub2-dosya-yöneticisi-grub2-file-managerg2fm/#comments
+# credit: Alive
+# Grub2 File Manager Github: https://github.com/a1ive/grub2-filemanager
+
 
 	Türkçe Açıklama
 
