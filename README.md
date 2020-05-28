@@ -3,7 +3,7 @@
 
 	Türkçe Açıklama - DİKKAT:
 
-![Önizleme.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG34CWZPIAWBZONKTPK6Z6J4O)
+![Preview.png](https://raw.githubusercontent.com/Abdullah-Erturk/SecureBoot-Grub2FM-Suite/master/%C3%96nizleme.png?token=ANCTFG56KLC6UOG6BBLHZGC6Z6K4O)
 
 Grub2FM Suite yöntemine ait script dosyası Windows 7/8/8.1'deki disk bölümlendirme kısıtlamalarından dolayı sadece Windows 10'da çalışmaktadır
 
