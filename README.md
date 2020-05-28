@@ -42,7 +42,7 @@ gerek yoktur, Grub2FM direkt olarak secureboot açık iken önyüklenecektir.
 Grub2FM Suite Tanıtım videosu crasadure TNCTR.com
 https://www.youtube.com/watch?v=eriQCbeE9k4
 
-	2- English Instruction
+	2- English Explanation
 	
 ![](https://www.resimag.com/p1/6e96dd60658.png)
 	
