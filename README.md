@@ -24,7 +24,7 @@ Script otomatik olarak yönetici hakları ile çalışır, çift tıklamanız ye
 Script ile USB-HDD ve flash diskleriniz için kolay bir şekilde Grub2 Dosya Yöneticisini kurabilirsiniz.
 
 Script aynı zamanda vhd ve vhdx sanal disklerine de kurulum yapabilmektedir. Ayrıca otomatik olarak istediğiniz dilde
-Release Grub2FM dosyalarını Github sitesinden indirir. Sonrasında da USB diskinizin tamamına veya br rbölümüne kurulum yapabilirsiniz.
+Release Grub2FM dosyalarını Github sitesinden indirir. Sonrasında da USB diskinizin tamamına veya bir bölümüne kurulum yapabilirsiniz.
 
 ÖZELLİKLERİ:
 - Güvenli Önyüklemeyi (Securebootu) destekler.
