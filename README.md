@@ -58,8 +58,7 @@ The script works automatically with administrator rights, just double-click it.
 With Script, you can easily install Grub2 File Manager for your USB-HDD and flash disks.
 
 The script can also be installed on vhd and vhdx virtual disks. It also automatically downloads the 
-Release Grub2FM files in the language of your choice from the Github site. You can then install it o
-n all or part of your USB disk.
+Release Grub2FM files in the language of your choice from the Github site. You can then install it on all or part of your USB disk.
 
 FEATURES:
 - Supports Secure Boot (Secureboot).
