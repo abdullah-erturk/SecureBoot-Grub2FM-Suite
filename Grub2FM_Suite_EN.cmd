@@ -6,29 +6,14 @@
 :: Grub2 File Manager Github: https://github.com/a1ive/grub2-filemanager
 
 @echo off
-mode con:cols=94 lines=38
+mode con:cols=70 lines=1
 pushd "%~dp0"
-if not "%~1"=="5" reg query HKEY_USERS\S-1-5-20 >nul 2>&1 || (
-	echo ADMINISTRATOR RIGHTS ENABLED....
-	echo Set UAC = CreateObject^("Shell.Application"^) >> "%temp%\admin.vbs" 
-	echo UAC.ShellExecute "%~fs0", "%~1", "", "runas", 1 >> "%temp%\admin.vbs"
-	"%temp%\admin.vbs"
-	del /f /q "%temp%\admin.vbs"
-	exit /b
-)
-setlocal enableextensions disabledelayedexpansion
-for /f "tokens=2 delims==" %%a in ('wmic path Win32_OperatingSystem get BuildNumber /value') do (
-  set /a WinBuild=%%a
-)
-del %temp%\msg.vbs /f /q >nul 2>&1
-echo Set WshShell = CreateObject("WScript.Shell"^) >> %temp%\msg.vbs
-echo x = WshShell.Popup ("The Operating System is not Windows 10. The script file only runs on Windows 10. The process will be terminated in 5 seconds.",5, "WARNING") >> %temp%\msg.vbs
-if %winbuild% LSS 10240 (
-call %temp%\msg.vbs
-del %temp%\msg.vbs /f /q >nul 2>&1
-exit
-)
-
+cd /d %~dp0
+net file 1>nul 2>nul && goto :run || powershell -ex unrestricted -Command "Start-Process -Verb RunAs -FilePath '%comspec%' -ArgumentList '/c ""%~fnx0""""'"
+goto :eof
+:run
+::===============================================================================================================
+mode con:cols=94 lines=38
 title SecureBoot (MokManager EFI) Grub2FM Setup ^& Download Suite - mephistooo2 ^| TNCTR.com
 :Main
 cls
@@ -40,25 +25,28 @@ echo.
 echo.
 echo	 	  1 - DOWNLOAD RELEASE GRUB2FM FILES
 echo.
-echo	 	  2 - SECUREBOOT (MOKMANAGER EFI) GRUB2FM INSTALL USB DISK
+echo	 	  2 - SECUREBOOT (MOKMANAGER EFI) GRUB2FM INSTALL USB/HDD DISK
 echo.
-echo	 	  3 - SECUREBOOT (MOKMANAGER EFI) GRUB2FM INSTALL USB DISK PARTITION
+echo	 	  3 - SECUREBOOT (MOKMANAGER EFI) GRUB2FM INSTALL USB/HDD DISK PARTITION
 echo.
-echo	 	  4 - GRUB2 FILE MANAGER VISIT WEBSITE (TNCTR - GITHUB)
+echo	 	  4 - CREATE DISK PARTITION AND SET UP SECUREBOOT (MOKMANAGER EFI) GRUB2FM
 echo.
-echo	 	  5 - EXIT
+echo	 	  5 - GRUB2 FILE MANAGER VISIT WEBSITE (TNCTR - GITHUB)
+echo.
+echo	 	  6 - EXIT
 echo.
 echo ==============================================================================================
 echo.
-choice /c 12345 /cs /n /m "YOUR CHOICE : "
+choice /c 123456 /cs /n /m "YOUR CHOICE : "
 echo.
-if errorlevel 5 Exit
-if errorlevel 4 goto :TNCTR
+if errorlevel 6 Exit
+if errorlevel 5 goto :TNCTR
+if errorlevel 4 goto :Shrink
 if errorlevel 3 goto :Volume
 if errorlevel 2 goto :Disk
 if errorlevel 1 goto :Download
 echo.
-
+::===============================================================================================================
 :Volume
 	cls
 	call :showDiskVolume
@@ -76,15 +64,14 @@ echo.
 		cls
         goto :volformat
     )
-	
-	    call :MsgBox "Be sure to select the disk-partition to install SecureBoot (MokManager EFI) Grub2FM. Do you want to continue?"  "VBYesNo+VBQuestion" "ATTENTION"
+	    call :MsgBox "Be sure to select the disk-partition to install SecureBoot (MokManager EFI) Grub2FM. Do you want to continue?"  "VBYesNo+VBQuestion" "..:: ATTENTION ::.."
     if errorlevel 7 (
         exit
     ) else if errorlevel 6 (
         call :volformat
     )
     exit /b
-	
+::===============================================================================================================
 :Disk
 	cls
 	call :showDiskTable
@@ -102,34 +89,31 @@ echo.
 		cls
         goto :Disk
     )
-	
-	    call :MsgBox "Be sure to select the disk to install SecureBoot (MokManager EFI) Grub2FM. Do you want to continue?"  "VBYesNo+VBQuestion" "ATTENTION"
+	    call :MsgBox "Be sure to select the disk to install SecureBoot (MokManager EFI) Grub2FM. Do you want to continue?"  "VBYesNo+VBQuestion" "..:: ATTENTION ::.."
     if errorlevel 7 (
         exit
     ) else if errorlevel 6 (
         call :format
     )
-
     exit /b
-	
+::===============================================================================================================
 :NTFSLetter
     set "ntfsdrive="
     for %%a in (Z Y X W V U T S R Q P O N M L K J I H G F E D C) do cd %%a: 1>>nul 2>&1 & if errorlevel 1 set ntfsdrive=%%a
 	exit /b 0
-
+::===============================================================================================================
 :FAT32Letter
     set "fat32drive="
     for %%a in (Z Y X W V U T S R Q P O N M L K J I H G F E D C) do cd %%a: 1>>nul 2>&1 & if errorlevel 1 set fat32drive=%%a
 	exit /b 0
-
+::===============================================================================================================
 :MsgBox
     setlocal enableextensions
     set "tempFile=%temp%\%~nx0.%random%%random%%random%vbs.tmp"
     >"%tempFile%" echo(WScript.Quit msgBox("%~1",%~2,"%~3") & cscript //nologo //e:vbscript "%tempFile%"
     set "exitCode=%errorlevel%" & del "%tempFile%" >nul 2>nul
     endlocal & exit /b %exitCode%
-	
-
+::===============================================================================================================
 :volformat
 	set "scriptFile=%temp%\%~nx0.%random%%random%%random%.tmp"
     > "%scriptFile%" (
@@ -170,7 +154,7 @@ echo.
 	choice /C:AX /N /M "Press the X button for EXIT -- Press A button for MAIN MENU: "
 	if errorlevel 2 Exit
 	if errorlevel 1 goto :Main
-
+::===============================================================================================================
 :format
 :ask    
 	echo.
@@ -249,7 +233,91 @@ echo.
 	choice /C:AX /N /M "Press the X button for EXIT -- Press A button for MAIN MENU: "
 	if errorlevel 2 Exit
 	if errorlevel 1 goto :Main
+::===============================================================================================================
+:Shrink
+	cls	
+	call :MsgBox "The partition you want to select must be in NTFS format. There will be no data loss."  "vbInformation" "..:: ATTENTION ::.."
+	call :showDiskVolume
+	echo.
+    set /p "   volNumber=Type in the Volume number to create a disk partition: "
+	
+	(   echo select vol %volNumber%
+        echo list vol
+    ) | diskpart | findstr /b /c:"*" >nul || (
+		echo.
+		echo WRONG CHOICE
+		timeout /t 2 > nul
+		cls
+		goto :Main
+		cls
+        goto :Shrink
+    )
+		call :MsgBox "A new partition with the size you specified will be created on the selected disk and the SecureBoot (MokManager EFI) Grub2FM will be installed. Make sure you select the correct Volume. Do you want to continue?"  "VBYesNo+VBQuestion" "..:: ATTENTION ::.."
+    if errorlevel 7 (
+        call :Main
+	) else if errorlevel 6 (
+        call :shrinkformat
+    )
+    exit /b
+	
+:shrinkformat
+	echo.
+	set /p "disksize=Input FAT32 size in MB: " || goto :shrinkformat
+	setlocal enabledelayedexpansion 
+	for /f "delims=0123456789" %%a in ("!disksize!") do set "disksize="
+	endlocal & set "disksize=%disksize%"
 
+	if not defined disksize (
+	echo.
+	echo Please use only numbers...
+	timeout /t 3 > nul
+	goto :shrinkformat
+    )
+	
+	set value=40
+	If %disksize% GEQ %value% (
+	GOTO :shrinkrun 
+	) ELSE (
+	echo.
+	echo Input FAT32 size at least 40 MB...
+	timeout /t 3 > nul
+	goto :shrinkformat
+	)
+	
+:shrinkrun
+	call :FAT32Letter
+    set "scriptFile=%temp%\%~nx0.%random%%random%%random%.tmp"
+    > "%scriptFile%" (
+		echo LIST VOLUME
+		echo SEL VOLUME %volNumber%
+		echo SHRINK DESIRED %disksize%
+		echo CREATE PARTITION PRIMARY
+        echo FORMAT QUICK FS=FAT32 LABEL="GRB2FM_BOOT"
+        echo ACTIVE
+		echo ASSIGN LETTER=%fat32drive%
+    )
+    type "%scriptFile%" > nul
+	echo.
+	echo	 Creating a Disc Partition...
+	diskpart /s "%scriptFile%" > nul
+    del /q "%scriptFile%" > nul
+	
+	echo.	
+	set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':wee-mbr\:.*';iex($f[1]); X 1 >nul
+	echo	 MBR installing...
+	Bootice /DEVICE=%fat32drive%: /mbr /restore /file=wee-mbr.bin /sectors=76 /keep_dpt:0 /quiet >nul
+	del Bootice.exe >nul
+	del wee-mbr.bin >nul
+	echo.
+	echo	 Copying Secure Boot (MokManager EFI) Grub2FM files...
+	robocopy USB %fat32drive%:\ /E >nul
+	echo.
+    echo	 OK
+	echo.
+	choice /C:AX /N /M "Press the X button for EXIT -- Press A button for MAIN MENU: "
+	if errorlevel 2 Exit
+	if errorlevel 1 goto :Main
+::===============================================================================================================
 :showDiskVolume
 	echo.
 	echo	 SecureBoot (MokManager EFI) Grub2 File Manager USB Setup
@@ -261,7 +329,7 @@ echo.
 	echo list vol | diskpart | findstr /b /c:" "	
     echo ======================================================
     goto :eof
-	
+::===============================================================================================================
 :showDiskTable
 	echo.
 	echo	 SecureBoot (MokManager EFI) Grub2 File Manager USB Setup
@@ -272,8 +340,7 @@ echo.
 	wmic diskdrive get Model, Index &echo list disk | diskpart | findstr /b /c:" "
     echo ======================================================
     goto :eof
-	
-	
+::===============================================================================================================
 :Download
 cls
 ping -n 1 github.com | findstr TTL >nul 2>&1 && goto Select 
@@ -286,7 +353,7 @@ echo	 Press any button for Main Menu...
 pause >nul
 CLS
 goto Main 
-
+::===============================================================================================================
 :Select
 echo.
 echo	 Download Release Grub2 File Manager Files
@@ -334,7 +401,7 @@ if errorlevel 4  goto :Es
 if errorlevel 3  goto :De 
 if errorlevel 2  goto :En
 if errorlevel 1  goto :Tr
-
+::===============================================================================================================
 :Pt-BR
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -358,7 +425,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Ko
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -382,7 +449,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Hu
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -406,7 +473,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Ar
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -430,7 +497,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Da
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -454,7 +521,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :TR
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -478,7 +545,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :En
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -502,7 +569,7 @@ del 7za.exe >nul
 del grubfmaa64.efi >nul
 del curl.exe >nul
 goto End
-
+::===============================================================================================================
 :De
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -526,7 +593,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Es
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -550,7 +617,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Fr
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -574,7 +641,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :He
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -598,7 +665,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Pl
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -622,7 +689,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Ru
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -646,7 +713,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Uk
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -670,7 +737,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :Vi
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -694,7 +761,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :ChS
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -718,7 +785,7 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
+::===============================================================================================================
 :ChT
 set "0=%~f0" & powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':tools\:.*';iex($f[1]); X 1 >nul
 for /f "tokens=7 delims=/" %%a in ('curl -k -s https://github.com/a1ive/grub2-filemanager/releases/latest/') do (
@@ -742,21 +809,17 @@ del 7za.exe >nul
 del curl.exe >nul
 del grubfmaa64.efi >nul
 goto End
-
-
+::===============================================================================================================
 :End
-echo MSGBOX "Download of Release Grub2FM Files is completed, you are directed to Main Menu for installation on USB & HDD disks.", vbInformation,"..:: mephistooo2 | TNCTR ::.."  > %temp%\TEMPmessage.vbs
-call %temp%\TEMPmessage.vbs
-del %temp%\TEMPmessage.vbs
+call :MsgBox "Download of Release Grub2FM Files is completed, you are directed to Main Menu for installation on USB & HDD disks.", vbInformation,"..:: mephistooo2 | TNCTR ::.."
 goto Main
-
-
+::===============================================================================================================
 :TNCTR
 echo.
 start https://www.tnctr.com/topic/662953-grub2-dosya-yöneticisi-grub2-file-managerg2fm/ 
 start https://github.com/a1ive/grub2-filemanager
 goto Main
-
+::===============================================================================================================
 :tools: Compressed2TXT v6.1
 $k='8lj2GCdghOZ`YB)qn|i3sxF\+%9={]6v-p_4D^~kb(z;@0ucX1[.MrJtw$PW5&Im?*THUQ<SoefyaK#7VR,}LA/N>E!'; Add-Type -Ty @'
 using System.IO; public class BAT91 {public static void Dec (ref string[] f, int x, string fo, string key) { unchecked {
@@ -3049,7 +3112,7 @@ do {o.WriteByte((byte)q); q >>= 8; n -= 8;} while (n>7);} } if (v != 91) o.Write
 ::/A!6mrKA3w_^#7rNA[{iP.~=!4}dc(d7QMQ+O_k<A[iVy~D*0ZT2/f<T`}yKl\+o6^_*hW,^w0N4B>ea_JSInCdeZKK?$+`]d3hs]K.1xy7+a3(]?No6(^|\Tkgwx2TjQ>AHE^AlnfpbguS,F*-@haDiO;Vek=voE\1(xzU.eJ;*0THw-xl,WaS9P3bS_t~T0Vz,iIxq#6,_(VW7}y(gfh;.,d}QoG*|J,,wCrm9OJn4lq~Im&f]C@vTXHfG<9jL4q%M\/`+ZN&aXns2XM4VNw_c`@i@vBv*P,9U2S)-}%H%b~v?[*e!-4H{VZ3>zquy[pHMFJ0M7AM5q}Y?J*.6EkND\w7W$*ZGB,.TCWhBA{eI/Jb/M;OVrP8|!hXCPfDzx|b>f{G{Wx&D!=U,f~-tx9oA[u;]l/4#SnBHL^LzglumPHh[;7t>?nsC2~@PJl89VOhFTw9>HU1`{=7o%UAP*xX0`{Chmo$&to[SzYJoU>;(+@^a,Gt/l)leOFcJi?Z<R,NSm_*#+}ccO+]rW_u^.is+WXn{6fqc*)|Hc1<$4`W<wsfj3`yal7k^f;{F0~&phN#tm;=jXKI{,Sb]*g)%dteOZl@fl]0#H<([~lX#z/K.A;K+}z?k`;je05bm^oj?L_)@_?]osd^B=%p)D[`VbB@43s<;R!eC<y}<p(7f+#wW|d.9i}+&Y{3AtU~vZttjhhb.3S$rGe(o^-n>/APwCrIoR[05aE%IVAv<5e2$%?xX;X*xy@O?X4-WL{Jog@zTM4xz\X5iHUbeS5c1L57EPRX}h1#&}fHt1RpCFLaAH#MT_y@2m23)zj<3rF!(_Y4$4m!J1[-h#46]Dt?b~85~a&Gx40P.aO;lXE#KOE2b}XGJd&D}hO=Q!/X%htF^u@/#}#OYT|]{,e)o%k{XVK1.!hIrw5!]%9z&zi8v(HoeQzn*/oab2`#rt<L}|LN@h^){=A6^@3/yN}R|oTKZaoQb6p]<L94o$]uY^~J-Y\iEiedp_DZ__YR$dwHD
 ::0T<q3Af7_JM]!}HN4K2D~]3Y)zw0$;Q$]hna0Mc<S{>}SrT_ZhTyg-!Kyz,20w2S>$2wv[v;zO?$0TGp*9-=p_W95U9W_wuJr^jN)B``I#*00lQuhXqs&]xN1{_o#&SVwneTV,^F6^6+mP!fGX]gvJJ{%)Giv,6++yh
 :tools:]
-
+::===============================================================================================================
 :wee-mbr: Compressed2TXT v6.1
 $k='Oc{i$Zh8kTfD,(Ppen_m>*l?F03J4@stBrK}%u=]CH`LXM+GW2xvNAR^aoY!/wVb<\d51qy-|UI~9.Qj);&S#Egz67['; Add-Type -Ty @'
 using System.IO; public class BAT91 {public static void Dec (ref string[] f, int x, string fo, string key) { unchecked {
@@ -3623,3 +3686,4 @@ do {o.WriteByte((byte)q); q >>= 8; n -= 8;} while (n>7);} } if (v != 91) o.Write
 ::g]`\xzC,*=$yX+vCzbyhemetFHP5f?U@RZGu2hZ1z3bWY;&#K__Sz*w\s$hwdu?{goV>b22j[O}(f}$pmm_xh?r{)cP!(mSHG1B.y7YQ.2g9aZ~5lB8k#\Frc<AxMQX3Fwccdu01znKmfXaTDmBHIDobBwT|ZeG6j3nb5wyYoN>5Ig=;<16Q3!vCm;QJgyvqgd_;?_/~-ESn_tJ|D#q2TXzdA,w}WsOUUYt3R_)*EuKEpZ7BY@peh)?AEvTsKI>&2=z8u43+#s.7C,aF|x6}?jxtOZkG($uVAL\Bj&c58Fsl+}Z{(D1w^TV(4#A9f?9>9C^rz~^DH!5]}oa~9\;?%/hVp=Qt3|yyIb\*]$\NH$=cg30==@HANx$yx{p#7Eyj0KpY!|>T!s!,uA6`KGTirQ#/h4(ifhRv/Rn`c7k3$o}m;!aV4?Tm`K50T=pt>#M8s_N/78Kp,}3BZup\dNLI+9$4oSYQ82@pjFd%o(,\#hh#(4)05={Kw9)~<;p9[VmT4.?<j`tK[Aj$KtMU0JzI}KVP~Zn\F6rizT,i8gnuT19%10iEc6.zywX5cnBw+\Pcz+Btb+<p|a6=F|DhO?Ux,ZMpL\Eb@AM4Ixa||tQXS8@un(03EMuNyp|EEeK1?&iHq__4n..H7.Uhr0~CehL_Yedr@H6U!rebj@Kqh1KB295qsjS_28Wif*T?MX+U>4M<gz-\t`@e}c\!<U#1xkd(4^/1xu3FzP(Mlg,I>TM*wgC=MMOZ<)*`{Z}b=Ixr`61{Za6{y{yVR,cJZ>,`L@8Fp=,a8pHdgN;WN|nE%DxxAkb|{}cGn6*?z|_(K(ory@%zjJuU~(4@+*DF;0?4-ly`g(H;/)Pr-{R|d%M\^2jLT^O<6SC6J}!PxlBb2h\/NKy3y48glui_[--@Gx?[#AAB9NtUb5HY_{Jh;%kMl{v|CX[*DRxGV*bB64K,u8y)Vx!%?9@-VqF=_)mv.^TsjFZJo27U9PbZ9Eqd{0dXz8WMSA^b5&Xdk(6X)P@A
 ::rHe,McrH6Sgh^{ZB@wpFZs}eq?D<%>=6-.0xF6W6zfvFP/A{Dl(64Q0caJp}u_s.qZJKYc<p$C(f6g}@TgOu*ytZ-u(h;vDA%\]vIiG1ML1&e1K9X7Xx(<l|lCh7|CM40`QVr*zT~k@4EvgN(pI![Ve>}/1xLfen(~gpN~a>o}5lm<a^,YJe[S]RK/D(yWSV|8qb+a9LuDQZ?PMM5Ji/PM=NvA2+3p6e<GoLik>w{+OV-Z3h62#`He.=%?i>w&Jc|RTc@lQ;XhU{n|#-NL+P|^^U*DzeAhx$&&[ql,t&o>8YEewQ-GHW[xNx`<G}bAk;heTmi4CwJpEG%IAYD]N=V)8J>8$!<ci3`o9&u7B(sM}\;aU,_r!AD&CM{?WL8\l&Fe8|a8IE)qtuzCNu(aU}wf2HN~g//yu^(<?lQ5v3fJd%hZZi>f2-=qkh/J$7l<?0zQhgK17]VE2_cg/TnWbdheow7h%pn!.z#98wNs882R5SV=DWD-lSsur/XRrV5It#.&*s2KJrGQC9E6MwzCyU;Q^kye$<o>7t)`Tl/4Bok3bIr!\4Bo0?nNr!\4BoVFnNr!\4CoVFv+BP\4CoVFK2BP\4CoQFK2Ti\4]oQFK2dk\4_d{
 :wee-mbr:]
+::===============================================================================================================
