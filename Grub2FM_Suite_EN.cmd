@@ -66,7 +66,7 @@ echo.
     )
 	    call :MsgBox "Be sure to select the disk-partition to install SecureBoot (MokManager EFI) Grub2FM. Do you want to continue?"  "VBYesNo+VBQuestion" "..:: ATTENTION ::.."
     if errorlevel 7 (
-        exit
+		goto :Main
     ) else if errorlevel 6 (
         call :volformat
     )
@@ -91,7 +91,7 @@ echo.
     )
 	    call :MsgBox "Be sure to select the disk to install SecureBoot (MokManager EFI) Grub2FM. Do you want to continue?"  "VBYesNo+VBQuestion" "..:: ATTENTION ::.."
     if errorlevel 7 (
-        exit
+		goto :Main
     ) else if errorlevel 6 (
         call :format
     )
